@@ -1,0 +1,5 @@
+compiler = gcc
+
+sp3:
+	sliding_puzzle.o
+	sp_text.o
