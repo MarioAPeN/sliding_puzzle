@@ -5,6 +5,7 @@ Building a small sliding puzzle game.
 Features:
 
 -Selectable image
+
 -Selectable size
 
 That's it!
