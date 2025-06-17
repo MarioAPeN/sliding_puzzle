@@ -1,3 +1,0 @@
-#PENDING
-#Currently it's just:
-#gcc findCicles.c fisher_yates.c manhattanNo.c sliding_puzzle.c -o testApp

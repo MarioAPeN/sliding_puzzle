@@ -13,8 +13,6 @@ const int SP_BOARD_NOT_INITIALIZED = -2;
 const int SP_BOARD_OPERATION_SUCCESSFUL = 0;
 const int SP_BOARD_OPERATION_FAILED = -3;
 
-
-
 const int SP_BOARD_CANNOT_MOVE = 1;
 const int SP_BOARD_MOVE_ALLOWED = 5;
 
@@ -237,6 +235,7 @@ int slidingPuzzleMove(SP_board* game, int direction, int requestedStep)
         if(movementStatus == SP_BOARD_MOVE_ALLOWED)
         {
             int result = spMove(game,direction,step);
+            game->turns += 1;
             verifyIfSolved(game);
             return result;
         }
