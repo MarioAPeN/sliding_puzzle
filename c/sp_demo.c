@@ -49,8 +49,8 @@ void refreshBoard(SP_board* game)
 int main()
 {
     int quitFlag = CONTINUE;
-    int boardRows = 5;
-    int boardCols = 4;
+    int boardRows = 3;
+    int boardCols = 3;
     SP_board puzzle;
 
     if(boardCreate(&puzzle,boardRows,boardCols) == SP_BOARD_OPERATION_SUCCESSFUL)

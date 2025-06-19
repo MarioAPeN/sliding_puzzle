@@ -23,20 +23,35 @@ while we loop through the whole array.
 #define FC_CANT_ALLOCATE_MEMORY    -2
 #define FC_ARRAY_IS_EMPTY          -3
 
-static int verifyAllValues(int* array, int arraySize)
+int valueExistsInArray(int value, int* array, int arraySize)
+{
+    int timesRepeated = 0;
+    for(int i=0;i<arraySize;i++)
+    {
+        if(array[i]==value){timesRepeated++;}
+    }
+    return timesRepeated;
+}
+
+int verifyAllValues(int* array, int arraySize, int* missN, int* reptN)
 {
     int missingNumbers = 0;
-    
+    int repeatedValues = 0;
+
     for(int i=0; i<arraySize; i++)
     {
-        for(int j=0; j<arraySize; j++)
+        switch(valueExistsInArray(i,array,arraySize))
         {
-            if(array[j] == i){break;}
-            if((array[j] != i) && (j==(arraySize-1)))
-            {missingNumbers++;}
+            case 0: missingNumbers++; break;
+            case 1: break;
+            default: repeatedValues++;
         }
     }
-    return missingNumbers;
+
+    if(missN != NULL){missN[0] = missingNumbers;}
+    if(reptN != NULL){reptN[0] = repeatedValues;}
+
+    return missingNumbers + repeatedValues;
 }
 
 int findCicles(int* array, int arraySize)
@@ -46,7 +61,7 @@ int findCicles(int* array, int arraySize)
     int* verificationArray = NULL;
 
     if(array == NULL) {return FC_ARRAY_IS_EMPTY;}
-    if(verifyAllValues(array,arraySize)>0){ return FC_ARRAY_IS_MISSING_VALUES;}
+    if(verifyAllValues(array,arraySize,NULL,NULL)>0){ return FC_ARRAY_IS_MISSING_VALUES;}
     
     verificationArray = (int*)malloc(sizeof(int)*arraySize);
     if(verificationArray == NULL) {return FC_CANT_ALLOCATE_MEMORY;}
